@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Bread Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Three.js Canvas will be rendered here -->
+        <canvas id="webgl-canvas"></canvas>
+        
+        <!-- Content sections that create scroll -->
+        <div class="content">
+            <!-- Hero Section -->
+            <section class="hero" id="hero">
+                <div class="hero-content">
+                    <h1>Leina</h1>
+                    <div class="scroll-prompt">
+                        <p>start scrolling to learn</p>
+                        <div class="arrow">↓</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <div class="about-content">
+                    <h2>About Me</h2>
+                    <p>Add your about me content here. Tell your story, share your passions, and let people know what drives you.</p>
+                </div>
+            </section>
+            
+            <!-- Experience Section -->
+            <section class="experience-section" id="experience">
+                <div class="experience-content">
+                    <h2>My Professional Experience</h2>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section class="contact-section" id="contact">
+                <div class="contact-content">
+                    <h2>Contact Me Here</h2>
+                    <p>Feel free to reach out. I'd love to hear from you and discuss potential opportunities.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GLTFLoader for loading Blender models -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- OrbitControls (optional - for debugging) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

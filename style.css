@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+/* Three.js Canvas - Fixed position */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    outline: none;
+}
+
+/* Content that scrolls over the canvas */
+.content {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.content section {
+    min-height: 100vh;
+    display: flex;
+    padding: 2rem;
+    pointer-events: all;
+}
+
+/* Hero Section - Left side text, object on right */
+.hero {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hero-content {
+    padding-left: 5rem;
+}
+
+.hero h1 {
+    font-size: 8rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    letter-spacing: -0.03em;
+}
+
+.scroll-prompt {
+    margin-top: 2rem;
+}
+
+.scroll-prompt p {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    font-weight: 200;
+    opacity: 0.4;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* About Section - Right side text, object on left */
+.about-section {
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.about-content {
+    max-width: 500px;
+    padding-right: 5rem;
+    text-align: left;
+}
+
+.about-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Experience Section - Left text, centered object */
+.experience-section {
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 200vh;
+}
+
+.experience-content {
+    text-align: left;
+    padding-left: 5rem;
+    max-width: 500px;
+}
+
+.experience-content h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Contact Section - Bottom text, object shows top */
+.contact-section {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 5rem;
+    min-height: 200vh;
+}
+
+.contact-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.contact-content h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+/* Loading screen */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 2rem;
+}
+
+#loading.hidden {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero-content {
+        padding-left: 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .about-content {
+        padding-right: 2rem;
+    }
+    
+    .experience-content {
+        padding-left: 2rem;
+    }
+    
+    .about-content h2,
+    .contact-content h2 {
+        font-size: 2rem;
+    }
+    
+    .experience-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .about-content p,
+    .contact-content p {
+        font-size: 1rem;
+    }
+}

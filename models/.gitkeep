@@ -1,0 +1,3 @@
+# Place your 3D model files here
+# Supported formats: .glb, .gltf
+# The main.js file is configured to load: bread.glb
