@@ -16,7 +16,7 @@ function init() {
         0.1, // Near clipping plane
         1000 // Far clipping plane
     );
-    camera.position.z = 5;
+    camera.position.z = 3.5;
 
     // Create renderer
     const canvas = document.getElementById('webgl-canvas');
@@ -171,7 +171,7 @@ function animate() {
         if (scrollProgress < section1End) {
             // Section 1: Hero - Object starts moving LEFT immediately with scroll
             const progress = scrollProgress / section1End;
-            model.position.x = 2 - (progress * 2); // Start moving left immediately (2 to 0)
+            model.position.x = 1.5 - (progress * 1.5); // Start at 1.5, move to center (0)
             model.position.y = 0;
             model.rotation.y = -Math.PI / 4 * progress; // Start rotating slightly
             model.rotation.x = 0;
