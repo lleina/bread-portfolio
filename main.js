@@ -7,7 +7,7 @@ let currentRotation = 0;
 function init() {
     // Create scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0xb1b36b);
 
     // Create camera
     camera = new THREE.PerspectiveCamera(
