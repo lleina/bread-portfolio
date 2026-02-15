@@ -2,6 +2,7 @@
 let scene, camera, renderer, model;
 let scrollY = 0;
 let currentRotation = 0;
+let isMobile = window.innerWidth <= 768;
 
 // Initialize Three.js scene
 function init() {
@@ -16,7 +17,7 @@ function init() {
         0.1, // Near clipping plane
         1000 // Far clipping plane
     );
-    camera.position.z = 3.5;
+    camera.position.z = isMobile ? 4.5 : 3.5; // Pull back on mobile for better view
 
     // Create renderer
     const canvas = document.getElementById('webgl-canvas');
@@ -150,6 +151,15 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    // Update mobile check on resize
+    const wasMobile = isMobile;
+    isMobile = window.innerWidth <= 768;
+    
+    // Adjust camera distance if switching between mobile/desktop
+    if (wasMobile !== isMobile) {
+        camera.position.z = isMobile ? 4.5 : 3.5;
+    }
 }
 
 // Animation loop
@@ -167,11 +177,15 @@ function animate() {
     // section4 = 1.0              Contact section
     
     if (model) {
+        // Adjust positions based on screen size
+        const startPosX = isMobile ? 0.5 : 1.5;  // Mobile: closer to center, Desktop: more to the right
+        const leftPosX = isMobile ? -1 : -2;      // Mobile: less extreme left position
+        
         // Position and rotation based on scroll progress
         if (scrollProgress < section1End) {
             // Section 1: Hero - Object starts moving LEFT immediately with scroll
             const progress = scrollProgress / section1End;
-            model.position.x = 1.5 - (progress * 1.5); // Start at 1.5, move to center (0)
+            model.position.x = startPosX - (progress * startPosX); // Start at startPosX, move to center (0)
             model.position.y = 0;
             model.rotation.y = -Math.PI / 4 * progress; // Start rotating slightly
             model.rotation.x = 0;
@@ -180,7 +194,7 @@ function animate() {
         } else if (scrollProgress < section2End) {
             // Section 2: About - Object continues to LEFT side, shows RIGHT side of object
             const progress = (scrollProgress - section1End) / (section2End - section1End);
-            model.position.x = 0 - (progress * 2); // Continue from center (0) to left (-2)
+            model.position.x = 0 - (progress * Math.abs(leftPosX)); // Continue from center (0) to left
             model.position.y = 0;
             model.rotation.y = -Math.PI / 4 - (Math.PI / 4 * progress); // Continue rotating to -90 degrees
             model.rotation.x = 0;
@@ -189,7 +203,7 @@ function animate() {
         } else if (scrollProgress < section3End) {
             // Section 3: Experience - Object in CENTER, SMOOTHLY rotates to show BOTTOM (nutrition label)
             const progress = (scrollProgress - section2End) / (section3End - section2End);
-            model.position.x = -2 + (progress * 2); // Move from left (-2) to center (0)
+            model.position.x = leftPosX + (progress * Math.abs(leftPosX)); // Move from left to center (0)
             model.position.y = 0;
             model.rotation.y = -Math.PI / 2; // Keep at -90 degrees
             model.rotation.x = -Math.PI / 2 * progress; // Smoothly rotate to show bottom
